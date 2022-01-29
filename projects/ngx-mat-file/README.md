@@ -1,21 +1,23 @@
 # File Input Component for Angular Material
 
-## Desctiption
+## Description
 
 - Preview option
 - Drag & Drop support
-- Can be used in both reactive and template driven forms
-- Implements built-in validators, like required, min, max
+- Can be used with both reactive and template driven forms
+- Built-in validators, like required, min and maxlength
 - Works within mat-form-field
 
 ## Demo
 
+
 ## Install
 
-npm i ngx-mat-file
+Add Angular Material and ngx-mat-file to your project: 
+
 ng add @angular/material
-Add the Material Design icon font to your index.html
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet">
+
+npm i ngx-mat-file
 
 ## Usage
 
@@ -23,5 +25,8 @@ Add the Material Design icon font to your index.html
 
 ## API Reference
 
+
+
 ## License
 
+MIT

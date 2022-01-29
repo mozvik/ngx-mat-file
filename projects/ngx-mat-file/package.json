@@ -1,12 +1,19 @@
 {
-  "name": "ngx-mat-file",
-  "version": "0.0.1",
-  "peerDependencies": {
-    "@angular/common": "^13.1.0",
-    "@angular/core": "^13.1.0",
-    "@angular/material": "^13.2.0"
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "name": "@mozvik/ngx-mat-file",
+  "version": "0.1.4",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public_api.ts"
+    }
   },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/cdk": "^13.2.0",
+    "@angular/common": "^13.1.0",
+    "@angular/core": "^13.1.0",
+    "@angular/material": "^13.2.0"
   }
 }
