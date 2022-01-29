@@ -1,0 +1,95 @@
+.ngx-mf-wrapper{
+  width: 100%;
+}
+
+.ngx-mf-dropzone{
+  min-height: 200px;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  transition: all 0.25s ease-in-out;
+}
+
+.ngx-mf-dragndrop{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  text-align: center;
+  pointer-events: none; 
+}
+
+.ngx-mf-img-card{
+  margin: .5rem;
+  padding: .5rem;
+  border: 1px solid #afafaf;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px  #cfcfcf;
+  max-width: 360px;
+  overflow: hidden;
+}
+.ngx-mf-img-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  padding: 1.2rem 0;
+}
+
+.ngx-mf-img-card-header{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: left;
+  justify-content: flex-end;
+} 
+.ngx-mf-img-card-header>div:first-child{
+  flex-grow: 1;
+}
+
+
+.ngx-mf-error{
+  color: #b00020;
+  width: 100%;
+  
+  padding: .5rem 0;
+}
+.ngx-mf-error-button{
+  color: #b00020;
+  background: rgba(250, 250, 250, .9);
+  padding: .5rem;
+  margin: .5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap:nowrap;
+  align-items: center;
+}
+
+
+.ngx-mf-toolbar{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.ngx-mf-toolbar button, .ngx-mf-toolbar span{
+  margin: .5rem 1rem;
+}
+h3{
+  line-height: 3.5rem;
+  padding: .5rem;
+  color: #afafaf;
+  font-size: 3rem;
+  font-weight: bold;
+  pointer-events: none; 
+}
+
+.darken{
+  background-color: rgba(190, 190, 190, .7);
+  transition: all 0.25s ease-in-out;
+}

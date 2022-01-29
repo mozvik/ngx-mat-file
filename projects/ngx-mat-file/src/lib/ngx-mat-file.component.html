@@ -1,0 +1,115 @@
+<div class="ngx-mf-wrapper">
+  <input
+    #ngx_mat_file_input
+    type="file"
+    [accept]="accept"
+    minlength="minlength"
+    maxlength="maxlength"
+    hidden
+    (change)="selectionChange($event)"
+    [multiple]="multiple"
+    />
+
+  <div class="ngx-mf-toolbar">
+    <div>
+      <button 
+        color="primary"
+        mat-button
+        [ngClass]="buttonVariant"
+       
+        [disabled]="disabled"
+        (click)="ngx_mat_file_input.click()"
+      >
+        {{ buttonBrowseText }}
+      </button>
+      <button
+        *ngIf="!hiddenUpload"
+        color="primary"
+        mat-button
+        [ngClass]="buttonVariant"
+        [disabled]="
+          fileCount() === 0 ||
+          fileCount() > maxlength ||
+          fileCount() < minlength ||
+          disabled"
+          (click)="uploadClick()"
+      >
+        {{ buttonUploadText }}
+      </button>
+    </div>
+    <div>
+      <button
+        color="warn"
+        mat-button
+        [ngClass]="buttonVariant"
+        [disabled]="fileCount() === 0 || disabled"
+        (click)="removeAll()"
+      >
+        {{ buttonRemoveAllText }}
+      </button>
+    </div>
+  </div>
+
+  <div matFileDnd (fileDropped)="selectionChange($event)"
+    class="ngx-mf-dropzone">
+    <div class="ngx-mf-error">
+      <div
+        class="ngx-mf-error-button"
+        *ngIf="fileCount() + invalidFileCount() > maxlength"
+      >
+        <mat-icon>error_outline</mat-icon>
+        <div>
+          <b>&nbsp;{{ invalidMaxFileCountMessage }}</b>
+        </div>
+      </div>
+      <div class="ngx-mf-error-button" *ngFor="let item of invalidFiles">
+        <mat-icon>error_outline</mat-icon>
+        <div *ngIf="item.size">
+          <b>&nbsp;{{ item.name }} {{ item.size | number: "1.0" }} bytes</b> |
+          {{ invalidFileSizeMessage }}
+        </div>
+        <div *ngIf="item.type">
+          <b>&nbsp;{{ item.name }} {{ item.type }}</b> |
+          {{ invalidFileTypeMessage }}
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let item of selectedFiles; index as i">
+      <div class="ngx-mf-img-card">
+        <div class="ngx-mf-img-card-header">
+          <div>{{ item.name }}</div>
+          <button mat-icon-button color="warn" (click)="removeFile(i)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div *ngIf="!fileSizeValid(item.size)">
+          <div class="ngx-mf-error">
+            <p>{{ invalidFileSizeMessage }}</p>
+          </div>
+        </div>
+        <div *ngIf="!fileTypeValid(item.type)">
+          <div class="ngx-mf-error">
+            <p>{{ invalidFileTypeMessage }}</p>
+          </div>
+        </div>
+
+        <div
+          *ngIf="fileSizeValid(item.size) && fileTypeValid(item.type) && preview"
+          
+        >
+          <img
+            [src]="previewData[i]"
+            [style]="previewWidthStyle"
+            style="border: none"
+          />
+        </div>
+        <div class="ngx-mf-img-card-footer">
+          <div>{{ byteToMegabyte(item.size) | number: "1.0-2" }} MB</div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="fileCount() === 0" class="ngx-mf-dragndrop">
+      <h3>{{ dragAndDropText }}</h3>
+    </div>
+  </div>
+</div>
