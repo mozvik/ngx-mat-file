@@ -63,7 +63,7 @@ THE SOFTWARE.
 @angular/platform-browser
 MIT
 
-ngx-mat-file
+@mozvik/ngx-mat-file
 
 rxjs
 Apache-2.0
