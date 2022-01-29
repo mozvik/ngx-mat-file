@@ -41,8 +41,5 @@ export class AppComponent {
   upload(e: any) {
     console.log('your upload function :>> ', e);
    }
-  
-  aaa(e: any) {
-     console.log('e :>> ', e);
-   }
+ 
 }

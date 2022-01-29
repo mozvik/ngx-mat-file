@@ -1,12 +1,6 @@
 {
-  "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@mozvik/ngx-mat-file",
   "version": "0.1.4",
-  "ngPackage": {
-    "lib": {
-      "entryFile": "public_api.ts"
-    }
-  },
   "dependencies": {
     "tslib": "^2.3.0"
   },

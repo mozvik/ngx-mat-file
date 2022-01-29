@@ -116,9 +116,8 @@ private _disabled = false;
  }
  set accept(value: string) {
    this._accept = value;
-   console.log('value :>> ', value);
- this._accept ? this.ngx_mat_file_input?.nativeElement.setAttribute("accept","image/*") : "";
- this.stateChanges.next();
+   this._accept ? this.ngx_mat_file_input?.nativeElement.setAttribute("accept","image/*") : "";
+  this.stateChanges.next();
  }
  private _accept = "";
   
