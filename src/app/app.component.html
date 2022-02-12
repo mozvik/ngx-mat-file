@@ -73,9 +73,8 @@
         [maxFileSize]="maxFileSize"
         (onUploadClick)="upload(files)"
         [(ngModel)]="files"
-        #fileInput
-        name="fileInput"
-    ></ngx-mat-file>
+        name="fileInput">
+      </ngx-mat-file>
     </mat-form-field>
   </div>   
   </form>
@@ -104,8 +103,8 @@
             [hiddenUpload]="true"
             previewWidth=100
             buttonVariant="mat-stroked-button"
-            formControlName="files"
-        ></ngx-mat-file>
+            formControlName="files">
+          </ngx-mat-file>
         </mat-form-field>
 
         

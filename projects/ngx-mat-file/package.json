@@ -1,6 +1,30 @@
 {
-  "name": "@mozvik/ngx-mat-file",
-  "version": "0.1.4",
+  "name": "ngx-mat-file",
+  "version": "0.1.5",
+  "description": "File input component for Angular Material",
+  "author": {
+    "name": "Attila Mozvik"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mozvik/ngx-mat-file"
+  },
+  "homepage": "https://mozvik.github.io/ngx-mat-file/",
+  "keywords": [
+    "angular",
+    "angular2",
+    "angular-material",
+    "material",
+    "file",
+    "input",
+    "drag and drop",
+    "mat-form-field",
+    "ngx-mat-file" 
+  ],
+  "bugs": {
+    "url": "https://github.com/mozvik/ngx-mat-file/issues"
+  },
+  "license": "MIT",
   "dependencies": {
     "tslib": "^2.3.0"
   },
