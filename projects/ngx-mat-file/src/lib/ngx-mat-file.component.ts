@@ -260,18 +260,17 @@ private _disabled = false;
   }
 
   fileTypeValid(file: File): boolean {
-    if (file.name.endsWith(this.accept)) {
+    const extensions = this.accept.split(',').map(item=>item.trim())
+
+    if (extensions.filter(item=>file.name.endsWith(item)).length > 0) {
       return true;
     }
-    if (this.accept.includes('image')) {
-      return this.isValidExtension(file.name, 'image')
+    if (this.accept.includes('image') || this.accept.includes('video') || this.accept.includes('audio')) {
+      return  this.isValidExtension(file.name, 'image') ||
+              this.isValidExtension(file.name, 'video') ||
+              this.isValidExtension(file.name, 'audio')
     }
-    if (this.accept.includes('video')) {
-      return this.isValidExtension(file.name, 'video')
-    }
-    if (this.accept.includes('audio')) {
-      return this.isValidExtension(file.name, 'audio')
-    }
+   
     return this.accept.includes(file.type)
   }
 
