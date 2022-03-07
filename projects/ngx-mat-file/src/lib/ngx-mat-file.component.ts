@@ -55,10 +55,10 @@ export class NgxMatFileComponent implements OnInit, ControlValueAccessor, MatFor
 
   private onChange: any = () => {}
   private onTouch: any = () => {}
-  public selectedFiles: Array<File> = [];;   
-  public invalidFiles: Array<any> = [];
-  public previewData: any = []; 
-  files?: any[];
+  public selectedFiles: Array<File> = [] 
+  public invalidFiles: Array<any> = []
+  public previewData: any = [] 
+  files?: any[]
   public previewWidthStyle: string = ""
 
   //MatFormFieldControl Interface
@@ -116,10 +116,13 @@ private _disabled = false;
  }
  set accept(value: string) {
    this._accept = value;
-   this._accept ? this.ngx_mat_file_input?.nativeElement.setAttribute("accept","image/*") : "";
-  this.stateChanges.next();
+   this._accept ? this.ngx_mat_file_input?.nativeElement.setAttribute("accept", this._accept) : ""
+   this.typeError = this.invalidFileTypeMessage.replace("{0}" , this.accept)
+   this.stateChanges.next()
  }
- private _accept = "";
+  private _accept = ""
+  
+  public typeError = ""
   
   set value(val: any) {  
     if (val && this.value !== val && val!=[]) {
@@ -127,6 +130,12 @@ private _disabled = false;
       this.onChange(val)
       this.onTouch(val)
     }
+  }
+
+  private extensionLists = {
+    video: ['ogm', 'wmv', 'ogv', 'mov', 'asx', 'mpeg', 'm4v', 'avi', 'mpg', 'mp4', 'webm'],
+    audio: ['opus', 'wav', 'ogg', 'm4a', 'oga', 'mid', 'webm', 'weba', 'flac', 'mp3', 'aiff', 'wma', 'au'],
+    image: ['tiff', 'pjp', 'jfif', 'svg', 'xbm', 'dib', 'jxl', 'jpeg', 'webp', 'ico', 'tif', 'pjpeg', 'avif', 'jpg', 'gif', 'bmp', 'png']
   }
 
 @Output() onUploadClick = new EventEmitter<any>();
@@ -161,7 +170,7 @@ private _disabled = false;
   }
 
   interpolation() {
-    this.invalidFileTypeMessage = this.invalidFileTypeMessage.replace("{0}" , this.accept)
+    this.typeError = this.invalidFileTypeMessage.replace("{0}" , this.accept)
     this.invalidFileSizeMessage = this.invalidFileSizeMessage.replace("{0}", this.maxFileSize.toString())
     this.invalidMinFileCountMessage = this.invalidMinFileCountMessage.replace("{0}", this.minlength.toString())
     this.invalidMaxFileCountMessage = this.invalidMaxFileCountMessage.replace("{0}", this.maxlength.toString())
@@ -184,7 +193,7 @@ private _disabled = false;
     for (const file of files) {
 
       if ( this.fileSizeValid(file.size) && 
-        this.fileTypeValid(file.type))
+        this.fileTypeValid(file))
       {
         if (arr.find(f =>
         f.name == file.name &&
@@ -243,15 +252,45 @@ private _disabled = false;
   }
 
   fileCount(): number {
-    return this.selectedFiles.length;
+    return this.selectedFiles.length
   }
 
   invalidFileCount(): number {
-    return this.invalidFiles.length;
+    return this.invalidFiles.length
   }
 
-  fileTypeValid(fileType: string): boolean {
-    return fileType.search(this.accept) != -1
+  fileTypeValid(file: File): boolean {
+    if (file.name.endsWith(this.accept)) {
+      return true;
+    }
+    if (this.accept.includes('image')) {
+      return this.isValidExtension(file.name, 'image')
+    }
+    if (this.accept.includes('video')) {
+      return this.isValidExtension(file.name, 'video')
+    }
+    if (this.accept.includes('audio')) {
+      return this.isValidExtension(file.name, 'audio')
+    }
+    return this.accept.includes(file.type)
+  }
+
+  private isValidExtension(fileName: string, property: string) {
+    if (!this.extensionLists.hasOwnProperty(property)) {
+      return false      
+    }
+    if (this.accept.includes('/*')){
+      if (this.extensionLists[property as keyof typeof this.extensionLists].filter((val: string) => fileName.endsWith(val)).length > 0) {
+        return true
+      }
+      return false
+    }
+    else {
+      if (this.accept.slice(this.accept.indexOf('/')+1) != '' && fileName.endsWith(this.accept.slice(this.accept.indexOf('/')+1))) {
+        return true
+      }
+      return false
+    }
   }
 
   fileSizeValid(fileSize: number): boolean {
