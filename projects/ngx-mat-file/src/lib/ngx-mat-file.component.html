@@ -64,13 +64,13 @@
       </div>
       <div class="ngx-mf-error-button" *ngFor="let item of invalidFiles">
         <mat-icon>error_outline</mat-icon>
-        <div *ngIf="item.size">
+        <div *ngIf="item.size || item.size==''">
           <b>&nbsp;{{ item.name }} {{ item.size | number: "1.0" }} bytes</b> |
           {{ invalidFileSizeMessage }}
         </div>
-        <div *ngIf="item.type">
+        <div *ngIf="item.type || item.type==''">
           <b>&nbsp;{{ item.name }} {{ item.type }}</b> |
-          {{ invalidFileTypeMessage }}
+          {{ typeError }}
         </div>
       </div>
     </div>
@@ -87,14 +87,14 @@
             <p>{{ invalidFileSizeMessage }}</p>
           </div>
         </div>
-        <div *ngIf="!fileTypeValid(item.type)">
+        <div *ngIf="!fileTypeValid(item)">
           <div class="ngx-mf-error">
-            <p>{{ invalidFileTypeMessage }}</p>
+            <p>{{ typeError }}</p>
           </div>
         </div>
 
         <div
-          *ngIf="fileSizeValid(item.size) && fileTypeValid(item.type) && preview"
+          *ngIf="fileSizeValid(item.size) && fileTypeValid(item) && preview"
           
         >
           <img
