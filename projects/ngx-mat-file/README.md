@@ -16,12 +16,6 @@
 
 ## Install
 
-Add Angular Material to your project:
-
-```
-ng add @angular/material
-```
-
 Install ngx-mat-file
 
 ```
@@ -65,12 +59,6 @@ Selector: `ngx-mat-file`
 |                                     |                     |                                              |                                                                         |
 | @Output() onUploadClick             | `EventEmitter<any>` | -                                            | Event emitted when upload button clicked.                               |
 
-### Methods
-
-| Name       | Parameters | Description                                   |
-| ---------- | ---------- | --------------------------------------------- |
-| removeAll  | -          | Clears the files list.                        |
-| removeFile | `number`   | Removes a file from the file list at given index. |
 
 ## Usage
 

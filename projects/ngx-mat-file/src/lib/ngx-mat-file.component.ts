@@ -262,7 +262,7 @@ private _disabled = false;
   fileTypeValid(file: File): boolean {
     const extensions = this.accept.split(',').map(item=>item.trim())
 
-    if (extensions.filter(item=>file.name.endsWith(item)).length > 0) {
+    if (extensions.filter(item=>file.name.endsWith(item.toLowerCase())).length > 0) {
       return true;
     }
     if (this.accept.includes('image') || this.accept.includes('video') || this.accept.includes('audio')) {
