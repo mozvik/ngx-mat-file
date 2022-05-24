@@ -158,6 +158,9 @@ private _disabled = false;
   }
 
   writeValue(value: any) { 
+    if (!value) {
+      this.removeAll()
+    }
     this.value = value
   }
 
